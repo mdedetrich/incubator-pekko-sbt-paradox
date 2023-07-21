@@ -30,10 +30,8 @@ $(function() {
     if (!daysToExpire) daysToExpire = 365;
     const now = new Date();
     now.setDate(now.getDate() + daysToExpire);
-    // The lax value will send the cookie for all same-site
-    // requests and top-level navigation GET requests. This
-    // is sufficient for user tracking, but it will prevent
-    // many CSRF attacks. This is the default value in modern browsers.
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie#write_a_new_cookie for why
+    // samesite=lax is used
     document.cookie = `${cookieName}=${encodeURIComponent(cookieValue)};expires=${now.toUTCString()};path=/;samesite=lax`;
   }
 
